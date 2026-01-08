@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2019-2025 Intel Corporation
+Copyright (C) 2019-2026 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -23,26 +23,26 @@ SPDX-License-Identifier: MIT
 //    By defining any of the macros one will automatically exclude all other platforms
 
 // clang-format off
-    #if !( MD_INCLUDE_TGL_GT1_METRICS          || \
-           MD_INCLUDE_TGL_GT2_METRICS          || \
-           MD_INCLUDE_DG1_METRICS              || \
-           MD_INCLUDE_RKL_METRICS              || \
-           MD_INCLUDE_ADLP_METRICS             || \
-           MD_INCLUDE_ADLS_METRICS             || \
-           MD_INCLUDE_ADLN_METRICS             || \
-           MD_INCLUDE_ACM_GT1_METRICS          || \
-           MD_INCLUDE_ACM_GT2_METRICS          || \
-           MD_INCLUDE_ACM_GT3_METRICS          || \
-           MD_INCLUDE_PVC_GT1_METRICS          || \
-           MD_INCLUDE_PVC_GT2_METRICS          || \
-           MD_INCLUDE_MTL_GT2_METRICS          || \
-           MD_INCLUDE_MTL_GT3_METRICS          || \
-           MD_INCLUDE_BMG_METRICS              || \
-           MD_INCLUDE_LNL_METRICS              || \
-           MD_INCLUDE_PTL_METRICS              || \
-           MD_INCLUDE_ARL_GT1_METRICS          || \
-           MD_INCLUDE_ARL_GT2_METRICS          || \
-           MD_INCLUDE_NVL_METRICS              || \
+    #if !( MD_INCLUDE_TGL_GT1_METRICS || \
+           MD_INCLUDE_TGL_GT2_METRICS || \
+           MD_INCLUDE_DG1_METRICS     || \
+           MD_INCLUDE_RKL_METRICS     || \
+           MD_INCLUDE_ADLP_METRICS    || \
+           MD_INCLUDE_ADLS_METRICS    || \
+           MD_INCLUDE_ADLN_METRICS    || \
+           MD_INCLUDE_ACM_GT1_METRICS || \
+           MD_INCLUDE_ACM_GT2_METRICS || \
+           MD_INCLUDE_ACM_GT3_METRICS || \
+           MD_INCLUDE_PVC_GT1_METRICS || \
+           MD_INCLUDE_PVC_GT2_METRICS || \
+           MD_INCLUDE_MTL_GT2_METRICS || \
+           MD_INCLUDE_MTL_GT3_METRICS || \
+           MD_INCLUDE_BMG_METRICS     || \
+           MD_INCLUDE_LNL_METRICS     || \
+           MD_INCLUDE_PTL_METRICS     || \
+           MD_INCLUDE_ARL_GT1_METRICS || \
+           MD_INCLUDE_ARL_GT2_METRICS || \
+           MD_INCLUDE_NVL_METRICS     || \
            MD_INCLUDE_CRI_METRICS )
     // clang-format on
 

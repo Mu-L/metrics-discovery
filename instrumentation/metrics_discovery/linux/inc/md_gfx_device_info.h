@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2021-2025 Intel Corporation
+Copyright (C) 2021-2026 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -214,6 +214,8 @@ namespace MetricsDiscoveryInternal
         { GENERATION_BMG, 8 },
         { GENERATION_LNL, 8 },
         { GENERATION_PTL, 10 },
+        { GENERATION_NVL, 10 },
+        { GENERATION_CRI, 8 },
     };
 
 } // namespace MetricsDiscoveryInternal

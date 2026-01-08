@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2025 Intel Corporation
+Copyright (C) 2025-2026 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -118,5 +118,19 @@ namespace MetricsDiscoveryInternal::MetricSets_CRI_OAMG
     };
 
 } // namespace MetricsDiscoveryInternal::MetricSets_CRI_OAMG
+
+namespace MetricsDiscoveryInternal::MetricSets_CRI_OAMERT
+{
+    TCompletionCode AddInformationSet( CConcurrentGroup* concurrentGroup );
+
+    class CMertExtSetMetricSet final : public CMetricSet
+    {
+    public:
+        CMertExtSetMetricSet( CMetricsDevice& device, CConcurrentGroup* concurrentGroup, const char* symbolicName, const char* shortName, uint32_t apiMask, uint32_t category, uint32_t snapshotReportSize, uint32_t deltaReportSize, TReportType reportType, TByteArrayLatest* platformMask, uint32_t gtMask = GT_TYPE_ALL, bool isCustom = false );
+
+        TCompletionCode Initialize();
+    };
+
+} // namespace MetricsDiscoveryInternal::MetricSets_CRI_OAMERT
 
 #endif

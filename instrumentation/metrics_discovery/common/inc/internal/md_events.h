@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2022-2025 Intel Corporation
+Copyright (C) 2022-2026 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -31,6 +31,7 @@ namespace MetricsDiscoveryInternal
         OA_REPORTING_GLOBAL          = QUERY_MODE_MASK_GLOBAL,
         OA_REPORTING_GLOBAL_EXTENDED = QUERY_MODE_MASK_GLOBAL_EXTENDED,
         OA_REPORTING_MEDIA           = 0x10,
+        OA_REPORTING_MERT            = 0x20,
     } TOaReportingType;
 
     ///////////////////////////////////////////////////////////////////////////////

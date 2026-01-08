@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2022-2025 Intel Corporation
+Copyright (C) 2022-2026 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -161,14 +161,14 @@ namespace MetricsDiscoveryInternal
     //     GetStreamTypeFromSamplingType
     //
     // Description:
-    //     Returns stream type basing on given sampling type.
+    //     Returns stream type based on given sampling type.
     //
     // Input:
-    //     const TSamplingType samplingTyp - sampling type
-    //     TStreamType&        streamType  - (out) stream type
+    //     const TSamplingType samplingType - sampling type
+    //     TStreamType&        streamType   - (out) stream type
     //
     // Output:
-    //     TCompletionCode                 - result of operation (*CC_OK* is OK)
+    //     TCompletionCode                  - result of operation (*CC_OK* is OK)
     //
     //////////////////////////////////////////////////////////////////////////////
     TCompletionCode COAMConcurrentGroup::GetStreamTypeFromSamplingType( const TSamplingType samplingType, TStreamType& streamType ) const
@@ -191,7 +191,7 @@ namespace MetricsDiscoveryInternal
     //     IsSupported
     //
     // Description:
-    //     Checks if OAM concurrent groups is supported on current platform.
+    //     Checks if a given OAM concurrent group is supported on current platform.
     //
     // Input:
     //     const char*     symbolName - concurrent group symbol name

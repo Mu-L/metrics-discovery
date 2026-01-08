@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2024-2025 Intel Corporation
+Copyright (C) 2024-2026 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -639,6 +639,24 @@ const char ExternalEventsMedia::hwEvents[2697] = "Architectural Event Name,Hw Ev
                                                  "VIDEO_ENHANCEMENT_BOX1_READ_REQUEST,VIDEO_ENHANCEMENT_BOX1_READ_REQUEST,Video Enhancement Box1 Read Request,Number of VEBOX1 read requests,MTL BMG LNL PTL ARL NVL CRI\n"
                                                  "VIDEO_ENHANCEMENT_BOX1_WRITE_REQUEST,VIDEO_ENHANCEMENT_BOX1_WRITE_REQUEST,Video Enhancement Box1 Write Request,Number of VEBOX1 write requests,MTL BMG LNL PTL ARL NVL CRI\n"
                                                  "";
+
+#endif
+
+#if MD_INCLUDE_CRI_METRICS
+
+const char ExternalEventsMert::archEvents[1118] = "Group Mask,Event Encoding,Architectural Event Name,Event Definition,OA Reporting,Disaggregation Mode,Project,Group Name,Instance,Filter,Metric Result Units,Metric Type,Hw Unit Type,Normalization\n"
+                                                  "1,25600,HOST_TO_GPUMEM_TRANSACTION_READ,\"Number of host 64B reads to GPU local (HBM) memory (downstream over an interface such as pcie, cxl or an integrated fabric as applicable to the respective product segment)\",G,,CRI,Memory,,,events,1,0,8\n"
+                                                  "1,25601,HOST_TO_GPUMEM_TRANSACTION_WRITE,\"Number of host 64B writes to GPU local (HBM) memory (downstream over an interface such as pcie, cxl or an integrated fabric as applicable to the respective product segment)\",G,,CRI,Memory,,,events,1,0,8\n"
+                                                  "1,25602,SYSMEM_TRANSACTION_READ,\"Number of system memory 64B reads (upstream over an interface such as pcie, cxl or an integrated fabric as applicable to the respective product segment)\",G,,CRI,Memory,,,events,1,0,8\n"
+                                                  "1,25603,SYSMEM_TRANSACTION_WRITE,\"Number of system memory 64B writes (upstream over an interface such as pcie, cxl or an integrated fabric as applicable to the respective product segment)\",G,,CRI,Memory,,,events,1,0,8\n"
+                                                  "";
+
+const char ExternalEventsMert::hwEvents[1128] = "Architectural Event Name,Hw Event Name,Hw Event Short Name,Hw Event Description,Filter Value,Project\n"
+                                                "HOST_TO_GPUMEM_TRANSACTION_READ,HOST_TO_GPUMEM_TRANSACTION_READ,Host To GpuMem Transaction Read,\"Number of host 64B reads to GPU local (HBM) memory (downstream over an interface such as pcie, cxl or an integrated fabric as applicable to the respective product segment)\",0,CRI\n"
+                                                "HOST_TO_GPUMEM_TRANSACTION_WRITE,HOST_TO_GPUMEM_TRANSACTION_WRITE,Host To GpuMem Transaction Write,\"Number of host 64B writes to GPU local (HBM) memory (downstream over an interface such as pcie, cxl or an integrated fabric as applicable to the respective product segment)\",0,CRI\n"
+                                                "SYSMEM_TRANSACTION_READ,SYSMEM_TRANSACTION_READ,SysMem Transaction Read,\"Number of system memory 64B reads (upstream over an interface such as pcie, cxl or an integrated fabric as applicable to the respective product segment)\",0,CRI\n"
+                                                "SYSMEM_TRANSACTION_WRITE,SYSMEM_TRANSACTION_WRITE,SysMem Transaction Write,\"Number of system memory 64B writes (upstream over an interface such as pcie, cxl or an integrated fabric as applicable to the respective product segment)\",0,CRI\n"
+                                                "";
 
 #endif
 

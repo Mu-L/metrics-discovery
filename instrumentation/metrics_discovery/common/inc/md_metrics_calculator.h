@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2023-2025 Intel Corporation
+Copyright (C) 2023-2026 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -115,32 +115,33 @@ namespace MetricsDiscoveryInternal
             , m_savedReportPresent( false )
             , m_multipleSymbols( false )
         {
-            constexpr std::array<std::pair<const char*, const bool>, 25> acceptableSymbols = {
+            constexpr size_t                                                                acceptableSymbolsSize = 25;
+            constexpr std::array<std::pair<const char*, const bool>, acceptableSymbolsSize> acceptableSymbols     = {
                 { { "EuCoresTotalCount", true },
-                    { "EuDualSubslicesTotalCount", true },
-                    { "EuThreadsCount", true },
-                    { "GpuMaxFrequencyMHz", false },
-                    { "GpuTimestampFrequency", false },
-                    { "VectorEngineTotalCount", true },
-                    { "VectorEnginePerXeCoreCount", true },
-                    { "XeCoreTotalCount", true },
-                    { "SliceTotalCount", true },
-                    { "VectorEngineThreadsCount", true },
-                    { "L3BankTotalCount", true },
-                    { "L3NodeTotalCount", true },
-                    { "SqidiTotalCount", true },
-                    { "ComputeEngineTotalCount", true },
-                    { "CopyEngineTotalCount", true },
-                    { "ColorPipeTotalCount", true },
-                    { "DepthPipeTotalCount", true },
-                    { "GeometryPipeTotalCount", true },
-                    { "VectorEngineGrfBlocksCount", true },
-                    { "SliceMaxCount", true },
-                    { "XeCoreMaxCount", true },
-                    { "L3BankMaxCount", true },
-                    { "L3NodeMaxCount", true },
-                    { "SqidiMaxCount", true },
-                    { "CopyEngineMaxCount", true } }
+                        { "EuDualSubslicesTotalCount", true },
+                        { "EuThreadsCount", true },
+                        { "GpuMaxFrequencyMHz", false },
+                        { "GpuTimestampFrequency", false },
+                        { "VectorEngineTotalCount", true },
+                        { "VectorEnginePerXeCoreCount", true },
+                        { "XeCoreTotalCount", true },
+                        { "SliceTotalCount", true },
+                        { "VectorEngineThreadsCount", true },
+                        { "L3BankTotalCount", true },
+                        { "L3NodeTotalCount", true },
+                        { "SqidiTotalCount", true },
+                        { "ComputeEngineTotalCount", true },
+                        { "CopyEngineTotalCount", true },
+                        { "ColorPipeTotalCount", true },
+                        { "DepthPipeTotalCount", true },
+                        { "GeometryPipeTotalCount", true },
+                        { "VectorEngineGrfBlocksCount", true },
+                        { "SliceMaxCount", true },
+                        { "XeCoreMaxCount", true },
+                        { "L3BankMaxCount", true },
+                        { "L3NodeMaxCount", true },
+                        { "SqidiMaxCount", true },
+                        { "CopyEngineMaxCount", true } }
             };
 
             // Build global symbol map for all devices

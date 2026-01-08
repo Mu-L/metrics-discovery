@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2024-2025 Intel Corporation
+Copyright (C) 2024-2026 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -40,6 +40,8 @@ namespace MetricsDiscoveryInternal
         bool IsOaNotifyNumReportsSupported;
         bool IsOamScmiSupported;
         bool IsOamSagSupported;
+        bool IsOaMertSupported;
+        bool IsGtIdSupported;
     } TXeObservationCapabilities;
 
     //////////////////////////////////////////////////////////////////////////////

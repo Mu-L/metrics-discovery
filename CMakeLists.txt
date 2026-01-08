@@ -1,4 +1,4 @@
-# Copyright © 2020-2025, Intel Corporation
+# Copyright © 2020-2026, Intel Corporation
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -111,6 +111,7 @@ set (_SOURCES ${_SOURCES}
     ${BS_DIR_INSTRUMENTATION}/metrics_discovery/common/internal/concurrent_groups/md_concurrent_group.cpp
     ${BS_DIR_INSTRUMENTATION}/metrics_discovery/common/internal/concurrent_groups/md_oa_concurrent_group.cpp
     ${BS_DIR_INSTRUMENTATION}/metrics_discovery/common/internal/concurrent_groups/md_oam_concurrent_group.cpp
+    ${BS_DIR_INSTRUMENTATION}/metrics_discovery/common/internal/concurrent_groups/md_mert_concurrent_group.cpp
     ${BS_DIR_INSTRUMENTATION}/metrics_discovery/common/internal/md_equation.cpp
     ${BS_DIR_INSTRUMENTATION}/metrics_discovery/common/internal/md_events.cpp
     ${BS_DIR_INSTRUMENTATION}/metrics_discovery/common/internal/md_information.cpp

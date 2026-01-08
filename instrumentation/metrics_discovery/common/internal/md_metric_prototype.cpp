@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2024-2025 Intel Corporation
+Copyright (C) 2024-2026 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -174,10 +174,10 @@ namespace MetricsDiscoveryInternal
         m_params_1_13.MetricType         = m_hwEvent.m_archEvent.m_metricType;
         m_params_1_13.HwUnitType         = m_hwEvent.m_archEvent.m_hwUnitType;
         m_params_1_13.DisaggregationMode = m_hwEvent.m_archEvent.m_disaggregationMode;
-        m_params_1_13.QueryModeMask      = static_cast<uint32_t>( m_hwEvent.m_archEvent.m_oaReportingType & ~OA_REPORTING_MEDIA ); // Media metric prototypes don't support query
+        m_params_1_13.QueryModeMask      = static_cast<uint32_t>( m_hwEvent.m_archEvent.m_oaReportingType & ~( OA_REPORTING_MEDIA | OA_REPORTING_MERT ) ); // Media and mert metric prototypes don't support query
 
         const auto oaReportingType = m_hwEvent.m_archEvent.m_oaReportingType;
-        if( oaReportingType & ( OA_REPORTING_GLOBAL | OA_REPORTING_GLOBAL_EXTENDED | OA_REPORTING_MEDIA ) )
+        if( oaReportingType & ( OA_REPORTING_GLOBAL | OA_REPORTING_GLOBAL_EXTENDED | OA_REPORTING_MEDIA | OA_REPORTING_MERT ) )
         {
             m_params_1_13.ApiMask |= API_TYPE_IOSTREAM;
         }
@@ -419,39 +419,77 @@ namespace MetricsDiscoveryInternal
     //     Maps disaggregation mode to disaggregation mode name.
     //
     // Input:
-    //     const TDisaggregationMode mode - disaggregation mode.
+    //     const uint64_t instance - disaggregation instance.
     //
     // Output:
-    //     std::string                    - disaggregation mode name.
+    //     std::string             - disaggregation name.
     //
     //////////////////////////////////////////////////////////////////////////////
-    std::string CMetricPrototype::GetDisaggregationName( const TDisaggregationMode mode ) const
+    std::string CMetricPrototype::GetDisaggregationName( const uint64_t instance ) const
     {
-        switch( mode )
+        const char* disaggregationName = "";
+
+        switch( m_hwEvent.m_archEvent.m_disaggregationMode )
         {
             case DISAGGREGATION_MODE_XECORE:
-                return "XeCore";
+                disaggregationName = "XeCore";
+                break;
 
             case DISAGGREGATION_MODE_L3BANK:
-                return "L3Bank";
+                disaggregationName = "L3Bank";
+                break;
 
             case DISAGGREGATION_MODE_SLICE:
-                return "Slice";
+                disaggregationName = "Slice";
+                break;
 
             case DISAGGREGATION_MODE_SQIDI:
-                return "Sqidi";
+                disaggregationName = "Sqidi";
+                break;
 
             case DISAGGREGATION_MODE_L3NODE:
-                return "L3Node";
+                disaggregationName = "L3Node";
+                break;
 
             case DISAGGREGATION_MODE_COPYENGINE:
-                return "CopyEngine";
+                disaggregationName = "CopyEngine";
+                break;
 
             default:
                 const uint32_t adapterId = m_metricEnumerator.GetMetricsDevice().GetAdapter().GetAdapterId();
                 MD_ASSERT_A( adapterId, false );
                 return "";
         }
+
+        return disaggregationName + std::to_string( instance );
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+    //
+    // Class:
+    //     CMetricPrototype
+    //
+    // Method:
+    //     GetDisaggregationMask
+    //
+    // Description:
+    //     Gets disaggregation mask from disaggregation mode and instance.
+    //
+    // Input:
+    //     const uint64_t instance - disaggregation instance.
+    //
+    // Output:
+    //     uint32_t                 - disaggregation mask.
+    //
+    //////////////////////////////////////////////////////////////////////////////
+    uint32_t CMetricPrototype::GetDisaggregationMask( const uint64_t instance ) const
+    {
+        uint32_t disaggregationMode = m_hwEvent.m_archEvent.m_disaggregationMode;
+
+        uint32_t disaggregationMask = static_cast<uint32_t>( ( disaggregationMode & 0b111 ) << 16 ); // disaggregation mode 18:16
+        disaggregationMask |= ( ( instance & 0b111111 ) << 20 );                                     // disaggregation select 25:20
+
+        return disaggregationMask;
     }
 
     //////////////////////////////////////////////////////////////////////////////
@@ -609,9 +647,8 @@ namespace MetricsDiscoveryInternal
         switch( option->Type )
         {
             case OPTION_DESCRIPTOR_TYPE_DISAGGREGATION:
-                suffix                         = GetDisaggregationName( m_hwEvent.m_archEvent.m_disaggregationMode ) + std::to_string( value );
-                m_hwEvent.m_disaggregationMask = static_cast<uint32_t>( ( m_hwEvent.m_archEvent.m_disaggregationMode & 0b111 ) << 16 ); // disaggregation mode 18:16
-                m_hwEvent.m_disaggregationMask |= ( ( value & 0b111111 ) << 20 );                                                       // disaggregation select 25:20
+                suffix                         = GetDisaggregationName( value );
+                m_hwEvent.m_disaggregationMask = GetDisaggregationMask( value );
                 break;
 
             case OPTION_DESCRIPTOR_TYPE_NORMALIZATION_UTILIZATION:
@@ -1280,7 +1317,7 @@ namespace MetricsDiscoveryInternal
         {
             const uint32_t disaggregationInstance = ( m_hwEvent.m_disaggregationMask >> 20 ) & 0b111111;
 
-            std::string instanceSuffix = GetDisaggregationName( m_hwEvent.m_archEvent.m_disaggregationMode ) + std::to_string( disaggregationInstance );
+            std::string instanceSuffix = GetDisaggregationName( disaggregationInstance );
 
             std::transform( instanceSuffix.begin(), instanceSuffix.end(), instanceSuffix.begin(), toLower );
 

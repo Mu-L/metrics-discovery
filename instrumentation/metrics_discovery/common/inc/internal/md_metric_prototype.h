@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2024-2025 Intel Corporation
+Copyright (C) 2024-2026 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -71,7 +71,8 @@ namespace MetricsDiscoveryInternal
         void        UpdateNames( std::string& symbolName, std::string& shortName, const TOptionDescriptorType optionType ) const;
         void        DeleteSuffixFromName( std::string& name, std::string& nameLowerCase, const std::string_view suffix ) const;
         std::string GetSuffix( std::string& suffix ) const;
-        std::string GetDisaggregationName( const TDisaggregationMode mode ) const;
+        std::string GetDisaggregationName( const uint64_t instance ) const;
+        uint32_t    GetDisaggregationMask( const uint64_t instance ) const;
 
     private:
         // Variables:

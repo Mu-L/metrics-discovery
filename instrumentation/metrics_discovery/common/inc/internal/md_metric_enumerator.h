@@ -1,6 +1,6 @@
 /*========================== begin_copyright_notice ============================
 
-Copyright (C) 2024-2025 Intel Corporation
+Copyright (C) 2024-2026 Intel Corporation
 
 SPDX-License-Identifier: MIT
 
@@ -13,6 +13,7 @@ SPDX-License-Identifier: MIT
 #pragma once
 
 #include "metrics_discovery_api.h"
+#include "md_events.h"
 
 #include "instr_gt_driver_ifc.h"
 
@@ -72,6 +73,7 @@ namespace MetricsDiscoveryInternal
         // Variables:
         COAConcurrentGroup& m_oaConcurrentGroup;
         CMetricsDevice&     m_device;
+        TOaReportingType    m_oaReportingMask;
         bool                m_isInitialized;
 
         // Non-API:
